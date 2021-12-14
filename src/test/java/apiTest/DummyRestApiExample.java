@@ -29,30 +29,44 @@ public class DummyRestApiExample {
                 when().get("http://dummy.restapiexample.com/api/v1/employees").
                 then().assertThat().
                 statusCode(200).log().body();*/
-        //refactor to use specficications
-        given().spec(requestSpecification).
+
+
+        //refactor to use specifications
+        /*given().spec(requestSpecification).
                 get("employees").
                 then().spec(responseSpecification).
-                log().body();
+                log().body();*/
     }
 
     @Test
     public void GetOneEmpReturnsCorrectDataAndStatusCode200(){
         //initial structure before refactor with specifications
-        /*given().
+       /* given().
                 when().get("http://dummy.restapiexample.com/api/v1/employee/24").
                 then().assertThat().
                 body("data.employee_name", equalTo("Doris Wilder")).
                 and().
                 statusCode(200).
                 log().body();*/
-        //refactor to use specficications
-        given().
+
+        //refactor to use specifications
+        /*given().
                 spec(requestSpecification).
                 get("employee/24").
                 then().
                 spec(responseSpecification).
                 assertThat().body("data.employee_name", equalTo("Doris Wilder")).
+                log().body();*/
+    }
+    @Test
+    public void DeleteOneEmployee(){
+
+        given().
+                spec(requestSpecification).delete("delete/2").
+                then().
+                spec(responseSpecification).
+                assertThat().body("message", equalTo("Successfully! Record has been deleted")).
                 log().body();
     }
+
 }
